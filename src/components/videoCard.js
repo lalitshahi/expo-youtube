@@ -11,7 +11,13 @@ import moment from "moment";
 import { Hoverable, useHover } from "react-native-web-hooks";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const VideoCard = ({ title, thumbnail, channelTitle, publishedDate }) => {
+const VideoCard = ({
+  title,
+  thumbnail,
+  channelTitle,
+  publishedDate,
+  status,
+}) => {
   const ref = useRef(null);
   const [card, setCard] = useState(false);
   const scale = useRef(new Animated.Value(1)).current;
@@ -39,7 +45,11 @@ const VideoCard = ({ title, thumbnail, channelTitle, publishedDate }) => {
 
   return (
     <Hoverable
-      style={[styles.videoCardContainer, { zIndex: isHovered && 100 }]}
+      style={[
+        styles.videoCardContainer,
+        { zIndex: isHovered && 100 },
+        status === "loading" && { backgroundColor: "#dedede" },
+      ]}
       onHoverIn={scaleCardUp}
       onHoverOut={scaleCardDown}
     >

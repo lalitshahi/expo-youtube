@@ -3,17 +3,16 @@ import { View, StyleSheet, FlatList, ScrollView } from "react-native";
 import VideoCard from "../components/videoCard";
 import { API_KEY } from "@env";
 import { useQuery } from "react-query";
-import { data } from "./data";
-// const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=programming&type=video&key=${API_KEY}`;
 
-// const fetchVideos = async () => {
-// const result = await fetch(apiUrl);
-// return result.json();
-// };
+const apiUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=programming&type=video&key=${API_KEY}`;
+
+const fetchVideos = async () => {
+  const result = await fetch(apiUrl);
+  return result.json();
+};
+
 const VideoList = () => {
-  // const { data, status } = useQuery("videos", fetchVideos);
-  // console.log({ data: JSON.stringify(data) });
-  // console.log({ status });
+  const { data, status } = useQuery("videos", fetchVideos);
 
   const renderVideos = () =>
     data?.items.map((item) => (
@@ -28,30 +27,7 @@ const VideoList = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.scrollViewContainer}>
-        {/* <FlatList
-          data={data?.items || []}
-          renderItem={renderVideos}
-          keyExtractor={(item) => item.etag}
-          numColumns={numColumns}
-        /> */}
-        {renderVideos()}
-        {/* <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard /> */}
-      </View>
+      <View style={styles.scrollViewContainer}>{renderVideos()}</View>
     </ScrollView>
   );
 };

@@ -14,7 +14,12 @@ const Sidebar = () => {
       </View>
       <View style={styles.menus}>
         <View style={[styles.menuBar, styles.selected]}>
-          <Icon name="home" size={20} color="#111" style={styles.icon} />
+          <Icon
+            name="home-outline"
+            size={20}
+            color="#111"
+            style={styles.icon}
+          />
           <Text>Home</Text>
         </View>
         <View style={styles.menuBar}>
